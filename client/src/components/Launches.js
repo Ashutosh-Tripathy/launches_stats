@@ -16,7 +16,7 @@ const LAUNCHES_QUERY = gql`
 export class Launches extends Component {
     render() {
         return (
-            <Fragment style={{ margin: auto }}>
+            <div className="mx-5">
                 <h1>Launches test</h1>
                 <Query query={LAUNCHES_QUERY}>
                     {
@@ -34,7 +34,7 @@ export class Launches extends Component {
                         }
                     }
                 </Query>
-            </Fragment>
+            </div>
         )
     }
 }
