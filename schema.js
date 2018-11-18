@@ -43,14 +43,14 @@ const RootQuery = new GraphQLObjectType({
                     }
                 }
                 */
-                return axios.get('http://localhost:3000/customers/' + args.id)
+                return axios.get('http://localhost:4000/customers/' + args.id)
                     .then(res => res.data);
             }
         },
         customers: {
             type: new GraphQLList(CustomerType),
             resolve(parentValue, args) {
-                return axios.get('http://localhost:3000/customers')
+                return axios.get('http://localhost:4000/customers')
                     .then(res => res.data);
             }
         }
@@ -69,7 +69,7 @@ const mutation = new GraphQLObjectType({
                 age: { type: new GraphQLNonNull(GraphQLInt) },
             },
             resolve(parentValue, args) {
-                return axios.post('http://localhost:3000/customers', {
+                return axios.post('http://localhost:4000/customers', {
                     name: args.name,
                     email: args.email,
                     age: args.age
@@ -83,7 +83,7 @@ const mutation = new GraphQLObjectType({
                 id: { type: new GraphQLNonNull(GraphQLString) }
             },
             resolve(parentValue, args) {
-                return axios.delete('http://localhost:3000/customers/' + args.id)
+                return axios.delete('http://localhost:4000/customers/' + args.id)
                     .then(res => res.data);
             }
         },
@@ -96,14 +96,17 @@ const mutation = new GraphQLObjectType({
                 age: { type: GraphQLInt },
             },
             resolve(parentValue, args) {
-                return axios.patch('http://localhost:3000/customers/' + args.id, args)
+                return axios.patch('http://localhost:4000/customers/' + args.id, args)
                     .then(res => res.data);
             }
         },
     }
 });
 
+
 module.exports = new GraphQLSchema({
     query: RootQuery,
     mutation
 })
+
+
